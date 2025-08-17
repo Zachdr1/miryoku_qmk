@@ -10,4 +10,5 @@ jobs:
     with:
       keyboard: '["ferris/sweep"]'
       alphas: '["qwerty"]'
+      extras: '["colemakdh"]'
       nav: '["vi"]'
