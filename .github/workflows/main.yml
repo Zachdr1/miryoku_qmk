@@ -11,6 +11,9 @@ on:
       alphas:
         type: string
         default: '["default"]'
+      extra:
+        type: string
+        default: '["default"]'
       nav:
         type: string
         default: '["default"]'
@@ -48,6 +51,7 @@ jobs:
         rules: ${{ fromJSON(inputs.rules) }}
         custom_config: ${{ fromJSON(inputs.custom_config) }}
         merge: ${{ fromJSON(inputs.merge) }}
+        extra: ${{ fromJSON(inputs.extra)}}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -90,7 +94,7 @@ jobs:
           config="$user/custom_config.h"
 
           artifact_build_name=`echo "miryoku_qmk ${{ matrix.keyboard }}" | tr '/' '_'`
-          for option in "alphas=${{ matrix.alphas }}" "nav=${{ matrix.nav }}" "clipboard=${{ matrix.clipboard }}" "layers=${{ matrix.layers }}" "mapping=${{ matrix.mapping }}"
+          for option in "alphas=${{ matrix.alphas }}" "extra=${{matrix.extra}}" "nav=${{ matrix.nav }}" "clipboard=${{ matrix.clipboard }}" "layers=${{ matrix.layers }}" "mapping=${{ matrix.mapping }}"
           do
             if ! expr "$option" : '.*=default$'
             then
